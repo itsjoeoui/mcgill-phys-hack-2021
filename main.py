@@ -4,7 +4,7 @@ import random
 import particle as p
 
 
-def main():
+def main(test=False):
 
     pygame.init()
 
@@ -17,9 +17,6 @@ def main():
     bg.fill((0, 0, 0))
 
     particle_group = pygame.sprite.Group()
-
-    test = False
-    # test = True
 
     # radius,pos_x,pos_y,color,velocity,force
     if test:

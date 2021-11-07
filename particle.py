@@ -51,7 +51,7 @@ class Particle(pygame.sprite.Sprite):
         self.force = [0, 0]
 
         for i in self.groups():
-            logging.info(len(i.sprites()))
+            # logging.info(len(i.sprites()))
             pygame.display.set_caption(f"Remaining: {len(i.sprites())}")
             for s in i.sprites():
 
@@ -65,7 +65,7 @@ class Particle(pygame.sprite.Sprite):
 
                 if dist < (self.radius + s.radius) and self.radius >= s.radius and self.combining:
                     self.combine(s)
-                    logging.info("Combined!")
+                    logging.info(f"{len(i.sprites())+1} -> {len(i.sprites())} Combined!")
 
                 if dist_x == 0:
                     f_x = 0
