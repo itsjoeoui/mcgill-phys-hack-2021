@@ -29,9 +29,6 @@ class Particle(pygame.sprite.Sprite):
         self.image = pygame.Surface([2*self.radius,2*self.radius])
         self.image.set_colorkey((0, 0, 0))
         self.rect = pygame.draw.circle(self.image, self.color, (self.radius, self.radius), self.radius)
-
-    def get_color(self):
-        pass
     
     def get_x(self):
         return self.pos_x
@@ -90,10 +87,11 @@ class Particle(pygame.sprite.Sprite):
     
     def combine(self, other):
         new_mass = self.mass+other.mass
-        self.radius += other.radius
+        self.radius = (self.radius**3+other.radius**3)**(1/3)
 
         self.velocity[0] = (self.mass*self.velocity[0]+other.mass*other.velocity[0])/new_mass
         self.velocity[1] = (self.mass*self.velocity[1]+other.mass*other.velocity[1])/new_mass
+        self.color = tuple([sum(i)/2 for i in zip(self.color, other.color)])
         other.kill()
 
         self.mass = new_mass
@@ -102,35 +100,42 @@ class Particle(pygame.sprite.Sprite):
         self.rect = pygame.draw.circle(self.image, self.color, (self.radius, self.radius), self.radius)
         self.rect.center = (self.pos_x,self.pos_y)
         
+        
 def main():
 
     pygame.init()
-    clock = pygame.time.Clock()
-    screen = pygame.display.set_mode((500,500))
 
-    bg = pygame.Surface([500,500])
+    width = 640
+    height = 640
+    clock = pygame.time.Clock()
+    screen = pygame.display.set_mode((width,height))
+
+
+    bg = pygame.Surface([width,height])
     bg.fill((0,0,0))
 
     test_group = pygame.sprite.Group()
 
-    # for i in range(30):
-    #   i= Particle(random.randrange(1,10), random.randrange(0,500), random.randrange(0,500), (random.randrange(0,256),random.randrange(0,256),random.randrange(0,256)), [random.randrange(0,5),random.randrange(0,5)], [0,0])
-    #   test_group.add(i)
+    for i in range(500):
+       i= Particle(random.randrange(1,3), random.randrange(width*0.05, width*0.95), random.randrange(height*0.05, height*0.95), (random.randrange(0,256),random.randrange(0,256),random.randrange(0,256)), [random.randrange(0,1),random.randrange(0,1)], [0,0])
+       test_group.add(i)
+
+
     # radius,pos_x,pos_y,color,velocity,force
 
-    a = Particle(5,150,150,(255,255,255),[0,0],[0,0])
-    b = Particle(5,140,200,(255,0,255),[0,0],[0,0])
-    c = Particle(5,100,300,(0,0,255),[0,0],[0,0])
-    d = Particle(5,350,350,(0,255,255),[0,0],[0,0])
-    e = Particle(5,40,20,(255,255,0),[0,0],[0,0])
-    f = Particle(5,100,100,(255,0,0),[0,0],[0,0])
+    # a = Particle(5,150,150,(255,255,255),[0,0],[0,0])
+    # b = Particle(5,140,200,(255,0,255),[0,0],[0,0])
+    # c = Particle(5,100,300,(0,0,255),[0,0],[0,0])
+    # d = Particle(5,350,350,(0,255,255),[0,0],[0,0])
+    # e = Particle(5,40,20,(255,255,0),[0,0],[0,0])
+    # f = Particle(5,100,100,(255,0,0),[0,0],[0,0])
     
-    test_group.add(a)
-    test_group.add(b)
-    test_group.add(c)
-    test_group.add(d)
-    test_group.add(e)
-    test_group.add(f)
+    # test_group.add(a)
+    # test_group.add(b)
+    # test_group.add(c)
+    # test_group.add(d)
+    # test_group.add(e)
+    # test_group.add(f)
         
     while True:
         for event in pygame.event.get():
