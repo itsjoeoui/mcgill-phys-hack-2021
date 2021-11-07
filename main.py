@@ -3,6 +3,7 @@ import random
 
 import particle as p
 
+
 def main():
 
     pygame.init()
@@ -22,12 +23,12 @@ def main():
 
     # radius,pos_x,pos_y,color,velocity,force
     if test:
-        a = p.Particle(5,150,150,(255,255,255),[0,0],[0,0])
-        b = p.Particle(5,140,200,(255,0,255),[0,0],[0,0])
-        c = p.Particle(5,100,300,(0,0,255),[0,0],[0,0])
-        d = p.Particle(5,350,350,(0,255,255),[0,0],[0,0])
-        e = p.Particle(5,40,20,(255,255,0),[0,0],[0,0])
-        f = p.Particle(5,100,100,(255,0,0),[0,0],[0,0])
+        a = p.Particle(5, 150, 150, (255, 255, 255), [0, 0], [0, 0])
+        b = p.Particle(5, 140, 200, (255, 0, 255), [0, 0], [0, 0])
+        c = p.Particle(5, 100, 300, (0, 0, 255), [0, 0], [0, 0])
+        d = p.Particle(5, 350, 350, (0, 255, 255), [0, 0], [0, 0])
+        e = p.Particle(5, 40, 20, (255, 255, 0), [0, 0], [0, 0])
+        f = p.Particle(5, 100, 100, (255, 0, 0), [0, 0], [0, 0])
 
         particle_group.add(a)
         particle_group.add(b)
@@ -39,7 +40,7 @@ def main():
     else:
         for i in range(250):
             i = p.Particle(random.randrange(1, 3), random.randrange(width*0.05, width*0.95), random.randrange(height*0.05, height*0.95),
-                        (random.randrange(0, 256), random.randrange(0, 256), random.randrange(0, 256)), [random.randrange(0, 1), random.randrange(0, 1)], [0, 0])
+                           (random.randrange(0, 256), random.randrange(0, 256), random.randrange(0, 256)), [random.randrange(0, 1), random.randrange(0, 1)], [0, 0])
             particle_group.add(i)
 
     while True:

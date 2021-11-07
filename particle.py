@@ -10,6 +10,7 @@ logging.basicConfig(
     ]
 )
 
+
 class Particle(pygame.sprite.Sprite):
 
     def __init__(self, radius, pos_x, pos_y, color, velocity, force):
@@ -65,8 +66,7 @@ class Particle(pygame.sprite.Sprite):
                 if dist < (self.radius + s.radius) and self.radius >= s.radius and self.combining:
                     self.combine(s)
                     logging.info("Combined!")
-                
-                
+
                 if dist_x == 0:
                     f_x = 0
                     f_y = self.mass * s.mass / (dist_x**2 + dist_y**2)
