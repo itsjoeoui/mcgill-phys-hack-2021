@@ -46,8 +46,10 @@ class Particle(pygame.sprite.Sprite):
         self.pos_x += self.velocity[0]
         self.pos_y -= self.velocity[1]
         self.force = [0,0]
-
+        
         for i in self.groups():
+            logging.info(len(i.sprites()))
+            pygame.display.set_caption(f"Remaining: {len(i.sprites())}")
             for s in i.sprites():
 
                 # Skip itself
@@ -110,15 +112,14 @@ def main():
     clock = pygame.time.Clock()
     screen = pygame.display.set_mode((width,height))
 
-
     bg = pygame.Surface([width,height])
     bg.fill((0,0,0))
 
-    test_group = pygame.sprite.Group()
+    particle_group = pygame.sprite.Group()
 
     for i in range(500):
        i= Particle(random.randrange(1,3), random.randrange(width*0.05, width*0.95), random.randrange(height*0.05, height*0.95), (random.randrange(0,256),random.randrange(0,256),random.randrange(0,256)), [random.randrange(0,1),random.randrange(0,1)], [0,0])
-       test_group.add(i)
+       particle_group.add(i)
 
 
     # radius,pos_x,pos_y,color,velocity,force
@@ -144,8 +145,8 @@ def main():
 
         pygame.display.update()
         screen.blit(bg,(0,0))
-        test_group.draw(screen)
-        test_group.update()
+        particle_group.draw(screen)
+        particle_group.update()
         clock.tick(30)
 
 if __name__ == "__main__":
