@@ -1,3 +1,5 @@
+YouTube: https://www.youtube.com/watch?v=JG4PJDeQ5Hw
+
 ## Inspiration
 We were inspired by a seminar talk by Dr. Laurie Rousseau-Nepton about the SIGNALS (Star-formation, Ionized Gas, and Nebular Abundances Legacy Survey) Project at the Canada-France-Hawaii Telescope, where a simulation of star formation was shown.
 
